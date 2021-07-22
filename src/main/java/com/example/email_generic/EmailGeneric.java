@@ -60,7 +60,7 @@ public  class EmailGeneric {
  //------------------------------------------------Réservation pour acheteur-------------------------------------------------//
 
  static String subject4 = "Reservation deadline N° num_commande";
- static String AcheteurVirRes = "Hello,<br/>" + "Your reservation request expires after: Delai days, and if the seller rejects the reservation, or if the reservation deadline has passed without confirmation from the seller, your reservation will be automatically canceled.";
+ static String AcheteurVirRes = "Hello,<br/>" + "Your reservation request expires after: Delai days, and if the seller rejects the reservation<br/> or if the reservation deadline has passed without confirmation from the seller<br/> your reservation will be automatically canceled.";
  //------------------------------------------------Réservation confirmer par vendeur -------------------------------------------------//
  static String subject5 = "Reservation acceptance N° num_commande";
  static String AcheteurVirConfirmReserv = "Hello,<br/>" +
@@ -74,7 +74,7 @@ public  class EmailGeneric {
  //Vendeur
  //subject6
  static String VendeurRevCancel = "Hello,<br/>" +
-         "Order number num_commande has been cancelled.";
+         "Order number num_commande has been cancelled,because the payment deadline has expired with payment not made.";
  //Acheteur
  //subject6
  static String AcheteurVirDelaiExpir = "Hello,<br/>" +
@@ -95,15 +95,16 @@ public  class EmailGeneric {
  static String subject9 = "Invalid payment receipt (N° num_commande)";
  static String AcheteurNValidRecu = "Hello,<br/>" +
          "Your receipt is incorrect for order number N° num_commande, please send a valid receipt<br/>" +
-         "Beware, you only have a second attempt to submit a valid payment receipt or your order will be cancelled.<br/>" +
+         "Note: you only have a second attempt to submit a valid payment receipt or your order will be cancelled.<br/>" +
          "<button style=" + "width: 200px;height: 50px;background:#5cbf2a;text-align: center;border-radius: 28px;border-color: #5cbf2a;border-width: 0px" + "><a  href=" + "lien_confirm" + " style=" + "color: white;text-decoration-line: none; font-weight: bold;font-size: medium;" + ">Pay reserved order</a></button>";
 
  //------------------------------------------------Reçu valid et paiement effectue msg pour ITInfinity-------------------------------------------------//
  // subject=sbject2
  static String ITInfinityMsg = "Hello,<br/>" + "The request payment reseved with order N°" + "num_commande " + "is confirmed.";
  //------------------------------------------------Pour Acheteur(Echec de transaction)-------------------------------------------------//
- static String subject10 = "Failed transaction";
+ static String subject10 = "Failed transaction for num_commande";
  static String AcheteurechecTransaction = "Hello,<br/>" + "You have a failure in your payment transaction, please retry.";
+ static String ITInfinityMsgNo = "Hello,<br/>" + "There is a failure in the payment transaction for order number num_commande .";
 
 
 
@@ -125,7 +126,7 @@ public  class EmailGeneric {
           "Delai", Delai).replaceFirst("Frais_transport", Frais_transport).replaceFirst(
           "lien_confirm", lien_confirm).replaceFirst(
           "lien_cancel", lien_cancel).replaceFirst(
-          "num_compte", num_compte));
+          "num_compte", num_compte).replaceFirst("lien_banque",lien_banque));
   Mail message = new Mail(From,subject.replaceFirst("num_commande", num_commande),To,content);
   List<Attachments> attachement = new ArrayList<>();
   Attachments atch;
